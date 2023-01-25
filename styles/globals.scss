@@ -13,6 +13,7 @@
   --clr-font-normal: #131628;
   --clr-font-light: #5f5f5f;
   --clr-field-border: #d9d9d9;
+  --clr-test: #1199;
   --font: inter, ui-monospace, Menlo, Monaco, "Cascadia Mono", "Segoe UI Mono",
     "Roboto Mono", "Oxygen Mono", "Ubuntu Monospace", "Source Code Pro",
     "Fira Mono", "Droid Sans Mono", "Courier New", monospace;
@@ -55,4 +56,7 @@ a {
 }
 
 @layer components {
+  button {
+    @apply bg-gray-500 text-white rounded-sm p-[.5rem] text-[1.5rem];
+  }
 }

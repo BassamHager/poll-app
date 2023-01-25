@@ -1,5 +1,7 @@
 import Head from "next/head";
+import Link from "next/link";
 import { Inter } from "@next/font/google";
+import styles from "./home.module.scss";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -13,8 +15,10 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      <main className={inter.className}>
-        <h1 className="text-red-500 text-center text-4xl">hola</h1>
+      <main className={`${inter.className} ${styles.homeWrapper}`}>
+        <Link href={"/poll"}>
+          <button>Create a Poll</button>
+        </Link>
       </main>
     </>
   );

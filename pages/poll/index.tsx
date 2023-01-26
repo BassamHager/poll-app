@@ -1,12 +1,12 @@
+import Link from "next/link";
+// components
 import CreatePollSection from "@/components/createPollSection";
 import VoteSection from "@/components/voteSection";
-import Link from "next/link";
-import styles from "./poll.module.scss";
 import ResultSection from "../../components/resultSection/index";
+// style
+import styles from "./poll.module.scss";
 
-type Props = {};
-
-export default function Poll({}: Props) {
+export default function Poll() {
   return (
     <section className={styles.pollWrapper}>
       <header>
@@ -19,11 +19,11 @@ export default function Poll({}: Props) {
         <ResultSection />
       </div>
 
-      <Link href="/">
-        <div className={styles.homeButtonContainer}>
+      <div className={styles.homeButtonContainer}>
+        <Link href="/">
           <button>Home</button>
-        </div>
-      </Link>
+        </Link>
+      </div>
     </section>
   );
 }

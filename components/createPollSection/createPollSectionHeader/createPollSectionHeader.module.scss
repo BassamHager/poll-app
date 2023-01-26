@@ -1,0 +1,21 @@
+.createPollSectionHeaderWrapper {
+  .inputWrapper {
+    @apply w-[calc(100%-6rem)];
+
+    > * {
+      @apply h-[3.3rem] w-full  px-[.5rem];
+    }
+
+    input {
+      @apply text-black text-[1.4rem] outline-none drop-shadow-sm border border-gray-500 rounded-sm bg-gray-50 transition-all duration-300 ease-in-out focus:bg-white  focus:ring-2 focus:border-none focus:ring-blue-400;
+    }
+
+    .alertingBorder {
+      @apply border-red-500;
+    }
+
+    .fieldErrorMsg {
+      @apply w-full mt-[.25rem] text-red-500;
+    }
+  }
+}

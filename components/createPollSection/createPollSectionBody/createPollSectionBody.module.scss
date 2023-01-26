@@ -1,0 +1,30 @@
+.createPollSectionBodyWrapper {
+  .addAnswerWrapper {
+    @apply mt-[2rem] flex gap-[2rem];
+
+    .inputWrapper {
+      @apply w-full;
+
+      > * {
+        /* includes all first layer of nested children: input + p (err msg) */
+        @apply h-[3.3rem] w-full;
+      }
+
+      input {
+        @apply text-black text-[1.4rem] outline-none drop-shadow-sm border border-gray-500 rounded-sm bg-gray-50 transition-all duration-300 ease-in-out focus:bg-white focus:ring-2 focus:border-none focus:ring-blue-400 pl-[.5rem];
+      }
+
+      .overflowError {
+        @apply flex items-center;
+      }
+
+      .alertingBorder {
+        @apply border-red-500;
+      }
+
+      .fieldErrorMsg {
+        @apply w-full mt-[.25rem] text-red-500;
+      }
+    }
+  }
+}

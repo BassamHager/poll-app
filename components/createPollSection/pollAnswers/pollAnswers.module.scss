@@ -1,0 +1,15 @@
+.pollAnswersWrapper {
+  @apply mt-[4rem];
+
+  .addAnswerWrapper {
+    @apply mt-[2rem] flex gap-[2rem];
+
+    .inputWrapper {
+      @apply w-[calc(100%-6rem)] text-black text-[1.4rem] outline-none drop-shadow-sm border border-gray-500 rounded-sm bg-gray-50 px-[.5rem] flex items-center;
+    }
+
+    button {
+      @apply bg-gray-400  text-black hover:text-white rounded-sm p-[.5rem] text-[1.5rem] min-w-[4rem] hover:bg-test-clr duration-500;
+    }
+  }
+}

@@ -1,7 +1,15 @@
-import React from "react";
+// components
+import Section from "../section";
+import CreatePollSectionHeader from "./createPollSectionHeader/index";
+import CreatePollSectionBody from "./createPollSectionBody";
+import CreatePollSectionFooter from "./createPollSectionFooter";
 
-type Props = {};
-
-export default function CreatePollSection({}: Props) {
-  return <section>PollOptions</section>;
+export default function CreatePollSection() {
+  return (
+    <Section
+      header={<CreatePollSectionHeader />}
+      body={<CreatePollSectionBody />}
+      footer={<CreatePollSectionFooter />}
+    />
+  );
 }

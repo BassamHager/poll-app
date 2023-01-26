@@ -22,6 +22,7 @@ export const ContextValue = () => {
 
   // vote section - selected answer
   const [selectedIndex, setSelectedIndex] = useState<number | undefined>();
+  const [votesCount, setVotesCount] = useState<number>(0);
 
   const contextValue = {
     // poll question
@@ -39,6 +40,8 @@ export const ContextValue = () => {
     // vote section - selected answer
     selectedIndex,
     setSelectedIndex,
+    votesCount,
+    setVotesCount,
   };
 
   return contextValue;

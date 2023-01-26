@@ -5,9 +5,10 @@ import { AppContext } from "../../../context/AppContext";
 type Props = {};
 
 export default function VoteSectionFooter({}: Props) {
-  const { selectedIndex } = useContext(AppContext);
+  const { selectedIndex, votesCount, setVotesCount } = useContext(AppContext);
   const vote = () => {
-    console.log(selectedIndex, "is selected!");
+    const clicks = votesCount + 1;
+    setVotesCount(clicks);
   };
 
   return <SectionFooter actionButton={<button onClick={vote}>Vote</button>} />;

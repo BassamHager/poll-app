@@ -19,14 +19,13 @@ export default function ResultSectionBody({}: Props) {
   }, [pollAnswers]);
 
   return (
-    <div className={`flex justify-center`}>
-      {answers.map((answer: { value: string; totalValue: number }) => {
+    <div className={`flex justify-evenly mt-[10rem] h-full`}>
+      {answers.map((answer: { value: string; totalVotes: number }) => {
         return (
-          <div
-            key={answer.value}
-            className={`max-w-1/${answers.length} border`}
-          >
-            <p>{answer.value}</p>
+          <div key={answer.value} className={`w-full flex flex-col`}>
+            <div className="m-auto">{answer.totalVotes}</div>
+            <div className="border h-full"></div>
+            <p className="m-auto">{answer.value}</p>
           </div>
         );
       })}

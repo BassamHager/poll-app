@@ -20,6 +20,9 @@ export const ContextValue = () => {
   // addAnswerError
   const [addAnswerError, setAddAnswerError] = useState<string>("");
 
+  // vote section - selected answer
+  const [selectedIndex, setSelectedIndex] = useState<number | undefined>();
+
   const contextValue = {
     // poll question
     pollQuestion,
@@ -32,6 +35,10 @@ export const ContextValue = () => {
     // addAnswerError
     addAnswerError,
     setAddAnswerError,
+
+    // vote section - selected answer
+    selectedIndex,
+    setSelectedIndex,
   };
 
   return contextValue;

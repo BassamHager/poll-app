@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import React, { useContext } from "react";
 import { useForm } from "react-hook-form";
 // context
 import { FIELD_CHARS_LIMIT } from "@/context/constants";
@@ -34,6 +34,7 @@ export default function CreatePollSectionHeader() {
           className={errors.pollQuestion?.message ? styles.alertingBorder : ""}
           value={pollQuestion || ""}
           onChange={(e) => setPollQuestion(e.target.value)}
+          placeholder="Type a poll question"
         />
       </div>
     </form>

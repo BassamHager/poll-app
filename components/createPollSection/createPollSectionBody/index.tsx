@@ -70,7 +70,9 @@ export default function CreatePollSectionBody() {
                 placeholder="Type an answer"
               />
             ) : (
-              <p className={styles.overflowError}>You can't add more than 10</p>
+              <p className={styles.overflowError}>
+                You can not add more than 10
+              </p>
             )}
 
             {errors.pollAnswer?.message ||

@@ -2,7 +2,7 @@
 
 ### Demo
 
-[![demo](assets/images/demo/pollAppDemo.png)]('https://poll-app-pearl.vercel.app/poll')
+[![demo](assets/images/demo/pollAppDemo.png)](https://poll-app-pearl.vercel.app/poll)
 
 Steps taken for the development:
 

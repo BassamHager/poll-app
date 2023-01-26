@@ -5,8 +5,20 @@ import { AppContext } from "@/context/AppContext";
 import SectionFooter from "@/components/section/sectionFooter";
 
 export default function CreatePollSectionFooter() {
-  const { pollAnswers } = useContext(AppContext);
+  const { setPollQuestion, pollAnswers, setPollAnswers } =
+    useContext(AppContext);
+
   const text = `${pollAnswers.length}/10 possible answers`;
 
-  return <SectionFooter text={text} actionButton={<button>Reset</button>} />;
+  const reset = () => {
+    setPollQuestion("");
+    setPollAnswers([]);
+  };
+
+  return (
+    <SectionFooter
+      text={text}
+      actionButton={<button onClick={reset}>Reset</button>}
+    />
+  );
 }

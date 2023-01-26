@@ -1,31 +1,24 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import { useForm } from "react-hook-form";
 // context
 import { FIELD_CHARS_LIMIT } from "@/context/constants";
+import { AppContext } from "@/context/AppContext";
 // style
 import styles from "./createPollSectionHeader.module.scss";
 
 export default function CreatePollSectionHeader() {
-  // internal state
-  const [pollQuestion, setPollQuestion] = useState<string>(
-    "What is the value of ∏?"
-  );
+  // context
+  const { pollQuestion, setPollQuestion } = useContext(AppContext);
 
   // useFrom
   const {
     register,
-    handleSubmit,
     watch,
     formState: { errors },
   } = useForm({ defaultValues: { pollQuestion, pollAnswer: "" } });
 
   return (
-    <form
-      onSubmit={handleSubmit(() => {
-        setPollQuestion(watch("pollQuestion"));
-      })}
-      className={styles.createPollSectionHeaderWrapper}
-    >
+    <form className={styles.createPollSectionHeaderWrapper}>
       {/* section header - poll question */}
       <div className={`group ${styles.inputWrapper}`}>
         <input
@@ -39,10 +32,9 @@ export default function CreatePollSectionHeader() {
           disabled={watch("pollQuestion").length >= FIELD_CHARS_LIMIT}
           type="text"
           className={errors.pollQuestion?.message ? styles.alertingBorder : ""}
+          value={pollQuestion || ""}
+          onChange={(e) => setPollQuestion(e.target.value)}
         />
-        {errors.pollQuestion?.message && (
-          <p className={styles.fieldErrorMsg}>{errors.pollQuestion?.message}</p>
-        )}
       </div>
     </form>
   );

@@ -5,6 +5,11 @@ import { AnswerType } from "@/types/typings";
 export const AppContext = createContext<any>({});
 
 export const ContextValue = () => {
+  // poll question
+  const [pollQuestion, setPollQuestion] = useState<string>(
+    "What is the value of ∏?"
+  );
+
   // poll answers
   const [pollAnswers, setPollAnswers] = useState<AnswerType[]>([
     { value: "3.14", id: "1" },
@@ -16,6 +21,10 @@ export const ContextValue = () => {
   const [addAnswerError, setAddAnswerError] = useState<string>("");
 
   const contextValue = {
+    // poll question
+    pollQuestion,
+    setPollQuestion,
+
     // poll answers
     pollAnswers,
     setPollAnswers,
@@ -24,5 +33,6 @@ export const ContextValue = () => {
     addAnswerError,
     setAddAnswerError,
   };
+
   return contextValue;
 };

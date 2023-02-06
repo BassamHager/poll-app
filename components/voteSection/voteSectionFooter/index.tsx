@@ -1,15 +1,34 @@
-import SectionFooter from "@/components/section/sectionFooter";
-import React, { useContext } from "react";
+import React, { useContext, useEffect, useState } from "react";
+// context
 import { AppContext } from "../../../context/AppContext";
+// components
+import SectionFooter from "@/components/section/sectionFooter";
+// types
+import { IPollVote } from "@/types/typings";
 
-type Props = {};
+export default function VoteSectionFooter() {
+  // context
+  const { pollVotes } = useContext(AppContext);
 
-export default function VoteSectionFooter({}: Props) {
-  const { selectedIndex, votesCount, setVotesCount } = useContext(AppContext);
-  const vote = () => {
-    const clicks = votesCount + 1;
-    setVotesCount(clicks);
-  };
+  // internal state
+  const [isDisabled, setIsDisabled] = useState(false);
 
-  return <SectionFooter actionButton={<button onClick={vote}>Vote</button>} />;
+  const vote = (/* @TODO: */) => {};
+
+  const disableVoting = (): boolean =>
+    !pollVotes.some((vote: IPollVote) => vote.isSelected);
+
+  useEffect(() => {
+    setIsDisabled(disableVoting());
+  }, [pollVotes]);
+
+  return (
+    <SectionFooter
+      actionButton={
+        <button onClick={vote} disabled={isDisabled}>
+          Vote
+        </button>
+      }
+    />
+  );
 }

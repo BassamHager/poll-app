@@ -1,0 +1,36 @@
+.resultSectionBodyWrapper {
+  @apply flex justify-center mt-auto;
+
+  .resultCol {
+    @apply w-full flex flex-col items-center overflow-hidden;
+
+    .votesCount {
+      @apply border;
+    }
+
+    .colBox {
+      @apply border h-full w-full min-h-[1rem];
+    }
+
+    .colTitle {
+      @apply min-h-[1rem] h-full flex justify-center items-center m-[2rem] border border-transparent;
+    }
+    .rotateText {
+      @apply rotate-[75deg];
+    }
+
+    &:hover {
+      .votesCount {
+        @apply text-[#800];
+      }
+
+      .colBox {
+        @apply bg-[#800] duration-500;
+      }
+
+      .colTitle {
+        @apply text-[#800] border;
+      }
+    }
+  }
+}

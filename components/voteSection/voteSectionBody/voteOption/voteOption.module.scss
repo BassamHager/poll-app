@@ -1,0 +1,15 @@
+.voteOptionWrapper {
+  @apply w-fit mt-[2rem];
+
+  label {
+    @apply flex items-center cursor-pointer h-[3.3rem];
+
+    input {
+      @apply cursor-pointer mr-[.5rem];
+    }
+
+    p {
+      @apply select-none;
+    }
+  }
+}

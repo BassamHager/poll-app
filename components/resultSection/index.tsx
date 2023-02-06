@@ -1,12 +1,13 @@
 import React, { useContext } from "react";
-import Section from "../section";
+// context
 import { AppContext } from "@/context/AppContext";
+// components
+import Section from "../section";
 import ResultSectionFooter from "./resultSectionFooter";
 import ResultSectionBody from "./resultSectionBody";
 
-type Props = {};
-
-export default function ResultSection({}: Props) {
+export default function ResultSection() {
+  // context
   const { pollQuestion, pollAnswers } = useContext(AppContext);
 
   return (
@@ -18,7 +19,7 @@ export default function ResultSection({}: Props) {
           footer={<ResultSectionFooter />}
         />
       ) : (
-        <section></section>
+        <section /> /* empty section tag needed for styling purposes */
       )}
     </>
   );

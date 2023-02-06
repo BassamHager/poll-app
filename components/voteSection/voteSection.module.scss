@@ -1,0 +1,11 @@
+.voteSectionLabelWrapper {
+  @apply flex items-center mt-[2rem] cursor-pointer w-fit h-[3.3rem];
+
+  input {
+    @apply cursor-pointer mr-[.5rem];
+  }
+
+  p {
+    @apply select-none;
+  }
+}

@@ -1,18 +1,26 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import shortid from "shortid";
 // context
-import { FIELD_CHARS_LIMIT, POLL_MAX_ANSWERS } from "@/context/constants";
+import { FIELD_CHARS_MAX_LIMIT, POLL_MAX_ANSWERS } from "@/context/constants";
 import { AppContext } from "@/context/AppContext";
 // style
 import styles from "./createPollSectionBody.module.scss";
 // components
-import PollAnswers from "../pollAnswers";
+import PollAnswers from "./pollAnswers";
 
 export default function CreatePollSectionBody() {
   // context
-  const { pollAnswers, setPollAnswers, addAnswerError, setAddAnswerError } =
-    useContext(AppContext);
+  const {
+    pollAnswers,
+    setPollAnswers,
+    addAnswerError,
+    setAddAnswerError,
+    pollQuestion,
+  } = useContext(AppContext);
+
+  // internal state - for disabling the add button once empty
+  const [isDisabledAdd, setIsDisabledAdd] = useState<boolean>(false);
 
   // useForm
   const {
@@ -25,14 +33,12 @@ export default function CreatePollSectionBody() {
 
   const addAnswer = () => {
     const answerValue = watch("pollAnswer");
-    if (!answerValue?.trim()) return;
 
     // alert duplications
-    if (pollAnswers) {
+    if (answerValue && pollAnswers) {
       for (const { value } of pollAnswers) {
         if (value === answerValue) {
           setAddAnswerError("This answer is existed!");
-          resetField("pollAnswer");
           return;
         }
       }
@@ -46,27 +52,35 @@ export default function CreatePollSectionBody() {
     resetField("pollAnswer");
   };
 
+  useEffect(() => {
+    const inputValue = watch("pollAnswer");
+    setIsDisabledAdd(
+      !pollQuestion ||
+        pollAnswers?.length >= POLL_MAX_ANSWERS ||
+        inputValue.trim().length >= FIELD_CHARS_MAX_LIMIT
+    );
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [pollQuestion, pollAnswers.length, watch("pollAnswer")]);
+
   return (
     <div className={styles.createPollSectionBodyWrapper}>
-      {/* poll answers */}
-      <PollAnswers pollAnswers={pollAnswers} setPollAnswers={setPollAnswers} />
+      <PollAnswers />
 
       {/* add a poll answer */}
       <form onSubmit={handleSubmit(() => {})}>
         <div className={styles.addAnswerWrapper}>
           <div className={`group ${styles.inputWrapper}`}>
-            {pollAnswers && pollAnswers.length < POLL_MAX_ANSWERS ? (
+            {pollAnswers?.length < POLL_MAX_ANSWERS ? (
               <input
+                disabled={isDisabledAdd}
                 {...register("pollAnswer", {
                   maxLength: {
-                    value: FIELD_CHARS_LIMIT,
+                    value: FIELD_CHARS_MAX_LIMIT,
                     message: "Field max length is 80 characters!",
                   },
                 })}
                 type="text"
-                className={
-                  errors.pollAnswer?.message ? styles.alertingBorder : ""
-                }
+                className={addAnswerError ? styles.alertingBorder : ""}
                 placeholder="Type an answer"
               />
             ) : (
@@ -84,10 +98,10 @@ export default function CreatePollSectionBody() {
           </div>
 
           <button
-            disabled={pollAnswers && pollAnswers.length >= POLL_MAX_ANSWERS}
+            disabled={isDisabledAdd}
             onClick={addAnswer}
             className={
-              pollAnswers && pollAnswers.length >= POLL_MAX_ANSWERS
+              !pollQuestion || pollAnswers.length >= POLL_MAX_ANSWERS
                 ? "disabled"
                 : ""
             }

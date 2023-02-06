@@ -12,11 +12,12 @@ export default function VoteSectionBody() {
   // context
   const { pollAnswers, pollVotes, setPollVotes } = useContext(AppContext);
 
-  // mapping poll answers into voting options by adding a boolean switch to identify the selected vote
+  // mapping poll answers into voting options by adding a boolean switch to identify the selected vote & a votes count
   useEffect(() => {
     const votes = pollAnswers.map((answer: IPollAnswer) => ({
       ...answer,
       isSelected: false,
+      votesCount: 0,
     }));
     setPollVotes(votes);
   }, [pollAnswers]);

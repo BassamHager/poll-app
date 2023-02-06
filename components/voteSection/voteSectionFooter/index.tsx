@@ -8,12 +8,18 @@ import { IPollVote } from "@/types/typings";
 
 export default function VoteSectionFooter() {
   // context
-  const { pollVotes } = useContext(AppContext);
+  const { pollVotes, setPollVotes } = useContext(AppContext);
 
   // internal state
   const [isDisabled, setIsDisabled] = useState(false);
 
-  const vote = (/* @TODO: */) => {};
+  const vote = () => {
+    const updatedResults = pollVotes.map((result: IPollVote) => ({
+      ...result,
+      votesCount: result.isSelected ? result.votesCount + 1 : result.votesCount,
+    }));
+    setPollVotes(updatedResults);
+  };
 
   const disableVoting = (): boolean =>
     !pollVotes.some((vote: IPollVote) => vote.isSelected);

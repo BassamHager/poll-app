@@ -1,30 +1,19 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, { useContext } from "react";
 // context
 import { AppContext } from "@/context/AppContext";
 // style
 import styles from "./resultSectionBody.module.scss";
 // types
-import { IPollResultCol } from "@/types/typings";
+import { IPollVote } from "@/types/typings";
 
 export default function ResultSectionBody() {
   // context
   const { pollVotes } = useContext(AppContext);
-  // internal state
-  const [answers, setAnswers] = useState<IPollResultCol[]>([]);
-
-  // map votes into result columns
-  useEffect(() => {
-    const mapped = pollVotes.map((answer: IPollResultCol) => ({
-      value: answer.value,
-      totalVotes: 0,
-    }));
-    setAnswers(mapped);
-  }, [pollVotes, answers.length]);
 
   // for displaying a part of each answer due to styling purposes
   const substringAnswer = (text: string): string => {
-    if (text.length > 7) {
-      const displayedPart = text.slice(7);
+    if (text?.length > 7) {
+      const displayedPart = text.substring(0, 7);
       return displayedPart;
     }
     return text;
@@ -32,22 +21,22 @@ export default function ResultSectionBody() {
 
   return (
     <div className={styles.resultSectionBodyWrapper}>
-      {answers.map((answer) => {
+      {pollVotes.map((result: IPollVote) => {
         return (
           <div
-            key={answer.value}
+            key={result.id}
             className={`${styles.resultCol} ${
-              answers.length > 5 ? `max-w-[${answers.length}%]` : ""
+              pollVotes.length > 5 ? `max-w-[${pollVotes.length}%]` : ""
             }`}
           >
-            <div className={styles.votesCount}>{answer.votesCount}</div>
+            <div className={styles.votesCount}>{result.votesCount}</div>
             <div className={styles.colBox}></div>
             <p
               className={`${styles.colTitle} ${
-                answers.length > 3 ? styles.rotateText : ""
+                pollVotes.length > 3 ? styles.rotateText : ""
               }`}
             >
-              {substringAnswer(answer.value)}
+              {substringAnswer(result.value)}
             </p>
           </div>
         );

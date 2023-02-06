@@ -5,7 +5,7 @@
     @apply w-full flex flex-col items-center overflow-hidden;
 
     .votesCount {
-      @apply border;
+      @apply text-2xl mb-[.5rem];
     }
 
     .colBox {

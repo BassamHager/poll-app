@@ -4,7 +4,5 @@ export interface IPollAnswer {
 }
 export interface IPollVote extends IPollAnswer {
   isSelected: boolean;
-}
-export interface IPollResultCol extends IPollVote {
   votesCount: number;
 }

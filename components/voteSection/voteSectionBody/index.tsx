@@ -4,7 +4,7 @@ import { AppContext } from "@/context/AppContext";
 // components
 import VoteOption from "./voteOption/index";
 // style
-import styles from "./radioGroup.module.scss";
+import styles from "./voteSectionBody.module.scss";
 // types
 import { IPollVote, IPollAnswer } from "@/types/typings";
 

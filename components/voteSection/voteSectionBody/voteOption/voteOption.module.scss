@@ -1,8 +1,9 @@
 .voteOptionWrapper {
-  @apply w-fit mt-[2rem];
+  @apply w-fit mt-[2rem] h-[3.3rem] grid place-items-center;
 
   label {
-    @apply flex items-center cursor-pointer h-[3.3rem];
+    @apply flex items-center cursor-pointer;
+    word-break: break-all;
 
     input {
       @apply cursor-pointer mr-[.5rem];

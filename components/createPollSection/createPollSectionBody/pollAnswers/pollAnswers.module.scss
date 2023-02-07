@@ -1,5 +1,6 @@
 .pollAnswersWrapper {
-  @apply mt-[4rem];
+  @apply mt-[4rem] overflow-hidden;
+  word-break: break-all;
 
   .addAnswerWrapper {
     @apply mt-[2rem] flex gap-[2rem];

@@ -5,6 +5,8 @@ import { AppContext } from "../../../../context/AppContext";
 import styles from "./pollAnswers.module.scss";
 // types
 import { IPollAnswer } from "@/types/typings";
+// utils
+import { resetVoting } from "../../../../utils/resetVoting";
 
 export default function PollAnswers() {
   // context
@@ -15,6 +17,9 @@ export default function PollAnswers() {
       (answer: IPollAnswer) => answer.id !== id
     );
     setPollAnswers(filteredAnswers);
+
+    // clear voting
+    resetVoting();
   };
 
   return (
@@ -24,9 +29,7 @@ export default function PollAnswers() {
           <div key={answer.id} className={styles.addAnswerWrapper}>
             <p className={`group ${styles.inputWrapper}`}>{answer.value}</p>
 
-            <button type="button" onClick={() => deleteAnswer(answer.id)}>
-              X
-            </button>
+            <button onClick={() => deleteAnswer(answer.id)}>X</button>
           </div>
         );
       })}

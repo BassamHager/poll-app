@@ -1,36 +1,50 @@
 .resultSectionBodyWrapper {
-  @apply flex justify-center mt-auto;
+  @apply mt-[2rem] h-[60%];
 
-  .resultCol {
-    @apply w-full flex flex-col items-center overflow-hidden;
+  .graphWithCounts {
+    @apply border-l border-b border-black flex justify-center w-full h-full pr-[1rem] overflow-hidden;
 
-    .votesCount {
-      @apply text-2xl mb-[.5rem];
-    }
+    .resultCol {
+      @apply w-full flex flex-col items-center mt-auto;
 
-    .colBox {
-      @apply border h-full w-full min-h-[1rem];
-    }
-
-    .colTitle {
-      @apply min-h-[1rem] h-full flex justify-center items-center m-[2rem] border border-transparent;
-    }
-    .rotateText {
-      @apply rotate-[75deg];
-    }
-
-    &:hover {
       .votesCount {
+        @apply text-2xl;
+      }
+
+      .colBoxes {
+        @apply flex flex-col w-full border border-black mt-[.5rem];
+
+        .colBox {
+          @apply w-full min-h-[1rem] bg-gray-300;
+        }
+      }
+
+      &:hover {
+        .votesCount {
+          @apply text-[#800];
+        }
+
+        .colBox {
+          @apply bg-[#800] duration-500;
+        }
+      }
+    }
+  }
+
+  .colTitleContainer {
+    @apply flex justify-evenly mt-[2rem] pr-[1rem] w-full select-none;
+
+    > p {
+      @apply overflow-hidden text-center w-full px-[.5rem];
+
+      &:hover {
         @apply text-[#800];
       }
-
-      .colBox {
-        @apply bg-[#800] duration-500;
-      }
-
-      .colTitle {
-        @apply text-[#800] border;
-      }
     }
+  }
+
+  .resultFullTitle {
+    @apply min-h-[4rem] text-2xl mt-[.5rem] text-[#800] flex items-center justify-center flex-wrap;
+    word-break: break-all;
   }
 }

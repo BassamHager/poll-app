@@ -8,6 +8,8 @@ import { AppContext } from "@/context/AppContext";
 import styles from "./createPollSectionBody.module.scss";
 // components
 import PollAnswers from "./pollAnswers";
+// utils
+import { resetVoting } from "../../../utils/resetVoting";
 
 export default function CreatePollSectionBody() {
   // context
@@ -32,6 +34,7 @@ export default function CreatePollSectionBody() {
   } = useForm({ defaultValues: { pollAnswer: "" } });
 
   const addAnswer = () => {
+    // watch input changes
     const answerValue = watch("pollAnswer");
 
     // alert duplications
@@ -43,15 +46,20 @@ export default function CreatePollSectionBody() {
         }
       }
 
+      // add the answer to the existed array
       setAddAnswerError("");
       const answers = [...pollAnswers];
       const answer = { value: answerValue, id: shortid.generate() };
       answers.push(answer);
       setPollAnswers(answers);
     }
+
+    // reset field & clear voting
     resetField("pollAnswer");
+    resetVoting();
   };
 
+  // watch the input & disable it accordingly
   useEffect(() => {
     const inputValue = watch("pollAnswer");
     setIsDisabledAdd(

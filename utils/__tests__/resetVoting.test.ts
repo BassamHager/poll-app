@@ -6,6 +6,7 @@ describe("resetVoting util", () => {
   it("should be exported & can be called", () => {
     expect.assertions(1);
     resetVoting();
+
     expect(resetVoting).toHaveBeenCalledTimes(1);
   });
 });

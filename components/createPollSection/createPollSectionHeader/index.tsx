@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useState, useEffect } from "react";
 import { useForm } from "react-hook-form";
 // context
 import { FIELD_CHARS_MAX_LIMIT } from "@/context/constants";
@@ -9,6 +9,8 @@ import styles from "./createPollSectionHeader.module.scss";
 export default function CreatePollSectionHeader() {
   // context
   const { pollQuestion, setPollQuestion } = useContext(AppContext);
+  // internal state
+  const [isDisabled, setIsDisabled] = useState(false);
 
   // useFrom
   const {
@@ -16,6 +18,10 @@ export default function CreatePollSectionHeader() {
     watch,
     formState: { errors },
   } = useForm({ defaultValues: { pollQuestion, pollAnswer: "" } });
+
+  useEffect(() => {
+    setIsDisabled(pollQuestion.length >= FIELD_CHARS_MAX_LIMIT);
+  }, [pollQuestion]);
 
   return (
     <form
@@ -32,7 +38,7 @@ export default function CreatePollSectionHeader() {
               message: "Field max length is 80 characters!",
             },
           })}
-          disabled={watch("pollQuestion").length >= FIELD_CHARS_MAX_LIMIT}
+          disabled={isDisabled}
           type="text"
           className={errors.pollQuestion?.message ? styles.alertingBorder : ""}
           value={pollQuestion || ""}

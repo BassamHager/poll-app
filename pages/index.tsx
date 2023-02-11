@@ -17,7 +17,7 @@ export default function Home() {
 
       <main className={`${inter.className} ${styles.homeWrapper}`}>
         <Link href={"/poll"}>
-          <button>Create a Poll</button>
+          <button data-cy="create-a-poll-button">Create a Poll</button>
         </Link>
       </main>
     </>

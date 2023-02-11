@@ -1,6 +1,6 @@
 ### Poll App - Technical Assignment
 
-### Demo
+### Demo - Click on the image to navigate to the deployed application
 
 [![demo](assets/images/demo/poll-app-screenshot.png)](https://poll-app-pearl.vercel.app/poll)
 

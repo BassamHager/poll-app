@@ -1,34 +1,72 @@
+import React, { useContext, useState } from "react";
+// context
 import { AppContext } from "@/context/AppContext";
-import { AnswerType } from "@/types/typings";
-import React, { useContext, useEffect, useState } from "react";
+// style
+import styles from "./resultSectionBody.module.scss";
+// types
+import { IPollVote } from "@/types/typings";
 
-type Props = {};
+export default function ResultSectionBody() {
+  // context
+  const { pollVotes } = useContext(AppContext);
+  // internal state
+  const [resultFullTitle, setResultFullTitle] = useState("");
 
-export default function ResultSectionBody({}: Props) {
-  const { pollAnswers } = useContext(AppContext);
-  const [answers, setAnswers] = useState([]);
-
-  useEffect(() => {
-    const mapped = pollAnswers.map((answer: AnswerType) => {
-      return {
-        value: answer.value,
-        totalVotes: 0,
-      };
-    });
-    setAnswers(mapped);
-  }, [pollAnswers]);
+  // for displaying a part of each answer due to styling purposes
+  const substringAnswer = (text: string): string => {
+    if (text?.length > 7) {
+      const displayedPart = text.substring(0, 7);
+      return displayedPart;
+    }
+    return text;
+  };
 
   return (
-    <div className={`flex justify-evenly mt-[10rem] h-full`}>
-      {answers.map((answer: { value: string; totalVotes: number }) => {
-        return (
-          <div key={answer.value} className={`w-full flex flex-col`}>
-            <div className="m-auto">{answer.totalVotes}</div>
-            <div className="border h-full"></div>
-            <p className="m-auto">{answer.value}</p>
-          </div>
-        );
-      })}
+    <div className={styles.resultSectionBodyWrapper}>
+      <div className={styles.graphWithCounts}>
+        {pollVotes.map((result: IPollVote) => {
+          return (
+            <div
+              key={result.id}
+              className={`${styles.resultCol} ${
+                pollVotes.length > 5 ? `max-w-[${pollVotes.length}%]` : ""
+              }`}
+              onMouseOver={() => setResultFullTitle(result.value)}
+              onMouseOut={() => setResultFullTitle("")}
+            >
+              <div className={styles.votesCount}>{result.votesCount}</div>
+
+              <div className={styles.colBoxes}>
+                {[...Array(result.votesCount)].length ? (
+                  [...Array(result.votesCount)].map((_, ind) => {
+                    return <div key={ind} className={`${styles.colBox} `} />;
+                  })
+                ) : (
+                  <div className={`${styles.colBox}`} />
+                )}
+              </div>
+            </div>
+          );
+        })}
+      </div>
+
+      <div className={styles.colTitleContainer}>
+        {pollVotes.map((result: IPollVote) => {
+          return (
+            <p
+              key={result.id}
+              className={styles.colTitle}
+              onMouseOver={() => setResultFullTitle(result.value)}
+              onMouseOut={() => setResultFullTitle("")}
+            >
+              {substringAnswer(result.value)}
+            </p>
+          );
+        })}
+      </div>
+
+      {/* cursor hover message */}
+      <p className={styles.resultFullTitle}>{resultFullTitle}</p>
     </div>
   );
 }

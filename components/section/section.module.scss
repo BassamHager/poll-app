@@ -1,6 +1,10 @@
 .sectionWrapper {
   @apply pt-[4rem] pr-[2rem] pl-[4rem] border border-black flex flex-col;
 
+  > :nth-child(1) {
+    word-break: break-all;
+  }
+
   > :nth-child(2) {
     @apply mb-[4rem];
   }

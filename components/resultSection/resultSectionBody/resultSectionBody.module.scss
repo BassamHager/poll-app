@@ -1,0 +1,50 @@
+.resultSectionBodyWrapper {
+  @apply mt-[2rem] h-[60%];
+
+  .graphWithCounts {
+    @apply border-l border-b border-black flex justify-center w-full h-full pr-[1rem] overflow-hidden;
+
+    .resultCol {
+      @apply w-full flex flex-col items-center mt-auto;
+
+      .votesCount {
+        @apply text-2xl;
+      }
+
+      .colBoxes {
+        @apply flex flex-col w-full border border-black mt-[.5rem];
+
+        .colBox {
+          @apply w-full min-h-[1rem] bg-gray-300;
+        }
+      }
+
+      &:hover {
+        .votesCount {
+          @apply text-[#800];
+        }
+
+        .colBox {
+          @apply bg-[#800] duration-500;
+        }
+      }
+    }
+  }
+
+  .colTitleContainer {
+    @apply flex justify-evenly mt-[2rem] pr-[1rem] w-full select-none;
+
+    > p {
+      @apply overflow-hidden text-center w-full px-[.5rem];
+
+      &:hover {
+        @apply text-[#800];
+      }
+    }
+  }
+
+  .resultFullTitle {
+    @apply min-h-[4rem] text-2xl mt-[.5rem] text-[#800] flex items-center justify-center flex-wrap;
+    word-break: break-all;
+  }
+}

@@ -2,12 +2,9 @@ import React, { useContext } from "react";
 // context
 import { AppContext } from "@/context/AppContext";
 // components
-import RadioGroup from "./radioGroup";
 import Section from "../section";
 import VoteSectionFooter from "./voteSectionFooter";
-// types
-import { AnswerType } from "@/types/typings";
-// style
+import VoteSectionBody from "./voteSectionBody/index";
 
 export default function VoteSection() {
   // context
@@ -18,29 +15,7 @@ export default function VoteSection() {
       {pollQuestion && pollAnswers.length > 1 ? (
         <Section
           header={<h2>{pollQuestion}</h2>}
-          body={
-            <RadioGroup
-              onChange={(index) =>
-                console.log("hi", index)
-              } /* remove this @TODO: */
-              options={pollAnswers.map((answer: AnswerType) => {
-                return (
-                  <label
-                    id={answer.id}
-                    key={answer.id}
-                    className="flex items-center mt-[2rem] cursor-pointer w-fit h-[3.3rem]"
-                  >
-                    <input
-                      name="voteOption"
-                      type="radio"
-                      className="peer cursor-pointer mr-[.5rem]"
-                    />
-                    <p className="select-none"> {answer.value} </p>
-                  </label>
-                );
-              })}
-            ></RadioGroup>
-          }
+          body={<VoteSectionBody />}
           footer={<VoteSectionFooter />}
         />
       ) : (
